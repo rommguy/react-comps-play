@@ -1,2 +1,2 @@
-# empty-redux-app
-An empty skeleton for a redux app
+# playing with react comps
+experimenting with react-table and react-tagsinput
