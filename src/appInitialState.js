@@ -3,22 +3,22 @@ export const initialState = {
   usersData: {
     "000000": {
       "id": "000000",
-      "name": "",
-      "lastName": "",
+      "name": "Guy",
+      "lastName": "Romm",
       "age": 1,
       "permissions": 0
     },
     "000101": {
       "id": "000101",
-      "name": "",
-      "lastName": "",
+      "name": "Avital",
+      "lastName": "Elron-Romm",
       "age": 1,
       "permissions": 0
     },
     "000202": {
       "id": "000202",
-      "name": "",
-      "lastName": "",
+      "name": "Elad",
+      "lastName": "Ormian",
       "age": 1,
       "permissions": 0
     },
