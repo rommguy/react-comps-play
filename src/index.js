@@ -11,7 +11,7 @@ import {usersDataReducer} from './reducers/usersReducer'
 
 const reducer = combineReducers({
   todos: todoReducer,
-  userData: usersDataReducer
+  usersData: usersDataReducer
 })
 
 const store = createStore(reducer)

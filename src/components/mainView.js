@@ -3,30 +3,60 @@ import {connect} from 'react-redux'
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import ReactTable from 'react-table';
-import {map, identity} from 'lodash/fp'
+import {map, identity, defaults} from 'lodash/fp'
+import {editUser} from '../actions/userActions'
 
 class InnerMainView extends Component {
+  renderColumnInput(column) {
+    return row => {
+      const onChange = e => this.props.updateUser(defaults(row.original, {[column]: e.target.value}))
+      return (<input type="text" value={row.value} onChange={onChange}/>)
+    }
+  }
+
   render() {
     const columns = [{
-      accessor: 'id'
+      Header: 'תפקיד',
+      accessor: 'permissions',
+      sortable: true,
+      Cell: this.renderColumnInput('permissions')
     }, {
-      Header: 'Name',
-      accessor: 'name'
+      Header: 'שם משפחה',
+      accessor: 'lastName',
+      Cell: this.renderColumnInput('lastName'),
+      sortable: false
     }, {
-      Header: 'Name',
-      accessor: 'lastName'
+      Header: 'שם פרטי',
+      accessor: 'name',
+      sortable: true,
+      Cell: this.renderColumnInput('name')
+    }, {
+      accessor: 'id',
+      sortable: true,
+      sort: 'asc'
     }]
 
-    const dataArr = map(identity, this.props.userData)
-    return (<ReactTable data={dataArr} columns={columns}/>)
+    const dataArr = map(identity, this.props.usersData)
+    return (<ReactTable
+      data={dataArr}
+      columns={columns}
+      sortable={false}
+      onSortedChange={() => console.log('sort changed')}/>)
   }
 }
 
 InnerMainView.propTypes = {
-  userData: PropTypes.object
+  usersData: PropTypes.object.isRequired,
+  updateUser: PropTypes.func.isRequired
 }
 
-const mapStateToProps = function(state) {
-  return {userData: state.userData}
+const mapStateToProps = function (state) {
+  return {usersData: state.usersData}
 }
-export const MainView = connect(mapStateToProps)(InnerMainView);
+
+const mapDispatchToProps = dispatch => ({
+  updateUser(userData) {
+    dispatch(editUser(userData))
+  }
+})
+export const MainView = connect(mapStateToProps, mapDispatchToProps)(InnerMainView);
