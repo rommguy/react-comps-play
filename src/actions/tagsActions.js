@@ -1,4 +1,4 @@
-import {getTagsQuery} from '../selectors'
+import {getTags} from '../selectors'
 import {take} from 'lodash/fp'
 
 export const tagsActionTypes = {
@@ -11,7 +11,7 @@ const updateTags = tags => ({
 })
 
 export const thunkUpdateTags = tags => (dispatch, query) => {
-  const currentTags = query(getTagsQuery())
+  const currentTags = query(getTags())
   if (currentTags.length === 6) {
     dispatch(updateTags(take(1, currentTags)))
     return

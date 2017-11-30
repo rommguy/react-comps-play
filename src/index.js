@@ -13,6 +13,8 @@ import {usersDataReducer} from './reducers/usersReducer'
 import {tagsReducer} from './reducers/tagsReducer'
 import {thunk, applyMiddleware} from './thunkWithQuery'
 import {initialState} from "./appInitialState";
+import {withContext} from 'recompose'
+import PropTypes from 'prop-types'
 
 const reducer = combineReducers({
   todos: todoReducer,
@@ -33,9 +35,10 @@ const store = createStore(
   applyMiddleware({dsRead}, thunkMiddleware))
 store.query = selector => selector(store.getState(), {dsRead})
 
+const AppWithContext = withContext({query: PropTypes.func}, () => ({query: store.query}))(App)
 ReactDOM.render(
   <Provider store={store}>
-    <App/>
+    <AppWithContext/>
   </Provider>
   , document.getElementById('root'));
 registerServiceWorker();
