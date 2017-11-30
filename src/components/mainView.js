@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import ReactTable from 'react-table';
 import TagsInput from 'react-tagsinput'
-import {updateTags} from '../actions/tagsActions'
+import {thunkUpdateTags} from '../actions/tagsActions'
 import {getTableData, getTags} from '../selectors'
 import {columns} from '../constants'
 
@@ -39,6 +39,6 @@ const mapStateToProps = function (state) {
 }
 
 const mapDispatchToProps = dispatch => ({
-  updateTags: newTags => dispatch(updateTags(newTags))
+  updateTags: newTags => dispatch(thunkUpdateTags(newTags))
 })
 export const MainView = connect(mapStateToProps, mapDispatchToProps)(InnerMainView);

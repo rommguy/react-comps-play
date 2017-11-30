@@ -11,6 +11,8 @@ import {Provider} from 'react-redux'
 import {todoReducer} from './reducers/todoReducer'
 import {usersDataReducer} from './reducers/usersReducer'
 import {tagsReducer} from './reducers/tagsReducer'
+import {thunk, applyMiddleware} from './thunkWithQuery'
+import {initialState} from "./appInitialState";
 
 const reducer = combineReducers({
   todos: todoReducer,
@@ -18,7 +20,18 @@ const reducer = combineReducers({
   tags: tagsReducer
 })
 
-const store = createStore(reducer)
+const dsRead = {
+  getLayout() {
+    return {x: 5, y: 10}
+  }
+}
+
+const thunkMiddleware = thunk({dsRead})
+const store = createStore(
+  reducer,
+  initialState,
+  applyMiddleware({dsRead}, thunkMiddleware))
+store.query = selector => selector(store.getState(), {dsRead})
 
 ReactDOM.render(
   <Provider store={store}>
