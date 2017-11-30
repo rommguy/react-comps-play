@@ -2,13 +2,16 @@ import {connect} from 'react-redux'
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import ReactTable from 'react-table';
-import {editUser} from '../actions/userActions'
-import {getTableData} from '../selectors'
+import TagsInput from 'react-tagsinput'
+import {updateTags} from '../actions/tagsActions'
+import {getTableData, getTags} from '../selectors'
 import {columns} from '../constants'
 
 class InnerMainView extends Component {
   static propTypes = {
-    tableData: PropTypes.object.isRequired
+    tableData: PropTypes.array.isRequired,
+    tags: PropTypes.array,
+    updateTags: PropTypes.func
   }
 
   render() {
@@ -20,18 +23,22 @@ class InnerMainView extends Component {
             columns={columns}
             defaultPageSize={5}/>
         </div>
+        <div className="tags-container">
+          <TagsInput value={this.props.tags} onChange={this.props.updateTags}/>
+        </div>
       </div>
     )
   }
 }
 
 const mapStateToProps = function (state) {
-  return {tableData: getTableData(state)}
+  return {
+    tableData: getTableData(state),
+    tags: getTags(state)
+  }
 }
 
 const mapDispatchToProps = dispatch => ({
-  updateUser(userData) {
-    dispatch(editUser(userData))
-  }
+  updateTags: newTags => dispatch(updateTags(newTags))
 })
 export const MainView = connect(mapStateToProps, mapDispatchToProps)(InnerMainView);

@@ -1,5 +1,6 @@
 export const initialState = {
   todos: [],
+  tags: ['Too', 'Many', 'People'],
   usersData: {
     '0001': {firstName: 'comfort', lastName: 'account', age: 27, status: 'relationshipnail', visits: 59},
     '0002': {firstName: 'tin', lastName: 'throne', age: 20, status: 'relationship', visits: 53},
