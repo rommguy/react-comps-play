@@ -1,54 +1,14 @@
 {
-  "plugins": [
-    "react",
-    "promise"
-  ],
+  "extends": "react-app",
   "rules": {
-    "react/display-name": 2,
-    "react/no-danger": 2,
-    "react/no-did-mount-set-state": 2,
-    "react/no-did-update-set-state": 2,
-    "react/no-unknown-property": 2,
     "react/prop-types": [2, {
-        "ignore": [
-          "children"
-        ]
-     }],
-    "react/no-unused-prop-types": 2,
-    "react/self-closing-comp": 2,
+      "ignore": [
+        "children"
+      ]
+    }],
     "react/sort-comp": 2,
-    "react/jsx-wrap-multilines": 2,
-    "react/jsx-key": 2,
-    "react/jsx-pascal-case": 2,
-    "react/jsx-uses-vars": 2,
-    "comma-dangle": 2,
-    "no-extra-semi": 2,
-    "consistent-return": 2,
-    "eqeqeq": 2,
-    "no-else-return": 2,
-    "no-redeclare": 2,
-    "no-return-assign": 2,
-    "no-shadow": 2,
-    "no-undef-init": 2,
-    "no-undef": 2,
-    "no-unused-vars": 2,
-    "comma-spacing": [
-      2,
-      {
-        "before": false,
-        "after": true
-      }
-    ],
-    "new-cap": [1, {
-        "capIsNewExceptions": [
-          "Map"
-        ]}
-    ],
+    "react/no-unused-prop-types": 2,
     "prefer-template" : 2,
-    "quotes": 0,
-    "eol-last": 0,
-    "no-use-before-define": 0,
-    "no-console": 0,
     "arrow-body-style": [2, "as-needed"],
     "arrow-spacing": [2, { "before": true, "after": true }],
     "arrow-parens": [2, "as-needed"],
@@ -62,24 +22,5 @@
     "prefer-rest-params": 2,
     "prefer-spread": 2,
     "rest-spread-spacing": [2, "never"]
-  },
-  "env": {
-    "browser": true,
-    "node": true,
-    "amd": true,
-    "es6": true
-  },
-  "globals": {
-    "requirejs": true,
-    "process": true,
-    "__client": true,
-    "__server": true
-  },
-  "parserOptions": {
-    "ecmaVersion": 6,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
-    }
   }
 }
