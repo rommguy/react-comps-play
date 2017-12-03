@@ -23,9 +23,10 @@ export function applyMiddleware(queryServices, ...middlewares) {
     }
     let chain = []
 
+    const query = selector => selector(query, store.getState(), queryServices)
     const middlewareAPI = {
       getState: store.getState,
-      query: selector => selector(store.getState(), queryServices),
+      query,
       dispatch: (...args) => dispatch(...args)
     }
     chain = middlewares.map(middleware => middleware(middlewareAPI))

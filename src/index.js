@@ -33,9 +33,10 @@ const store = createStore(
   reducer,
   initialState,
   applyMiddleware({dsRead}, thunkMiddleware))
-store.query = selector => selector(store.getState(), {dsRead})
+const query = selector => selector(query, store.getState(), {dsRead})
+store.query = query
 
-const AppWithContext = withContext({query: PropTypes.func}, () => ({query: store.query}))(App)
+const AppWithContext = withContext({query: PropTypes.func}, () => ({query}))(App)
 ReactDOM.render(
   <Provider store={store}>
     <AppWithContext/>
